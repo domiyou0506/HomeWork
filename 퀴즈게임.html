@@ -1,0 +1,62 @@
+<!-- 문제
+2. 퀴즈에서 맞추기 게임을 작성
+- 약 20개 이상의 문제를 미리 등록
+- 미리 등록한 문제중 3개를 출력하고 몇개 맞았는지 확인해주는 게임
+- 3개 모두 맞추지 못할 경우 재시험
+=> 단 1문제씩 출력하며 답을 전송 후 3초 후에 다음 문제가 출제 -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈게임</title>
+    <script>
+
+        const quiz = ['과일이름: ㅅㄱ🍎', '과일이름: ㅂㄴㄴ🍌', '과일이름: ㅅㅂ🍉', '과일이름: ㅋㅇ🥝', '과일이름: ㅋㅋㄴ🥥', '과일이름: ㅍㅇㄴㅍ🍍', '과일이름: ㅁㄹ🍈', '과일이름: ㅈㄷ🍑', '과일이름: ㅊㄹ🍒', '과일이름: ㄸㄱ🍓', '야채이름: ㅌㅁㅌ🍅', '야채이름: ㅇㅅㅅ🌽', '야채이름: ㄱㅊ🌶', '야채이름: ㅂㅅ🍄','야채이름: ㅇㅂㅋㄷ🥑', '야채이름: ㅇㅇ🥒', '야채이름: ㅂㄹㅋㄹ🥦', '야채이름: ㄸㅋ🥜', '야채이름: ㅇㅍ🧅', '야채이름: ㄷㄱ🥕'];
+        const ans = ['사과', '바나나', '수박', '키위', '코코넛', '파인애플', '메론', '자두', '체리','딸기','토마토','옥수수', '고추', '버섯', '아보카도', '오이', '브로콜리', '땅콩', '양파', '당근'];
+        let boolean = true;
+        
+        function sleep(sec) {
+        const tot_sleep = Date.now() + sec;
+        while (Date.now() < tot_sleep) {}
+        }
+        // 동기식 지연장치 => 3초를 sleep에 넣어주면 Date.now는 3초가 될때가지 반복문을 돈다. 
+
+            while(boolean){
+                let num =0;
+                for(let i=0; i<3; i++){
+                        let quiz_num = Math.random();   
+                        let quiz_num1 = Math.floor(quiz_num*20);
+                        // 배열의 인덱스는 0부터 시작이므로 +1을 하지 않는다.
+                        let quiz_random = prompt(`${i+1}번째-초성 퀴즈 - ${quiz[quiz_num1]}`);  
+                    
+                        if(ans[quiz_num1] == quiz_random){
+                            alert('정답입니다.');
+                            num++;
+                        }else{
+                            alert('오답입니다.');
+                        }
+                        sleep(3000);
+                   }
+                if(num ==3){
+                    alert('모두 정답입니다. 수고하셨습니다. 프로그램을 종료합니다.')
+                    boolean=false;
+                    break;
+                }else if(num==2){
+                    alert('아쉽지만 2문제만 정답입니다. 다시 퀴즈를 진행합니다.')
+                }else if(num==1){
+                    alert('1문제만 정답입니다. 분발해보세요! 다시 퀴즈를 진행합니다.')
+                }else{
+                    alert('혹시 퀴즈를 푸시는데 어려움이 있으신가요? 퀴즈는 다시 진행되니 천천히 해보세요.')
+                }     
+            }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
